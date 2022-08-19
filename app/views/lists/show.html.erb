@@ -1,20 +1,21 @@
 
-
 <div class="container mr-3">
-  <h1> <%= @list.name %> </h1>
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1577382144834-8a80d92b925c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80)">
+    <h1> <%= @list.name %> </h1>
+  </div>
 
+  <p>Bookmarks</p>
+  <%= link_to "+new bookmark",  new_list_bookmark_path(@list) %>
 
-
-<p>Bookmarks</p>
-  <ul class=“list-group”>
-    <% @list.bookmarks.each do |bookmark|%>
-        <li class=“list-group-item”><%= bookmark.movie.title%></li>
-        <li class=“list-group-item mb-3”><%= bookmark.comment%></li>
-              <li class="list-group-item"><%= bookmark.movie.overview%></li>
-      <li class="list-group-item"><%= bookmark.movie.poster_url%></li>
-      <li class="list-group-item mb-5"><%= bookmark.movie.rating%></li>
-        <%= link_to "delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Delete bookmark?"} %>
-    <% end %>
-  </ul>
-
+    <ul class=“list-group”>
+      <% @list.bookmarks.each do |bookmark|%>
+          <li class=“list-group-item ”><%= bookmark.movie.title%></li>
+          <li class=“list-group-item mb-3”><%= bookmark.comment%></li>
+          <li class="list-group-item"><%= bookmark.movie.overview%></li>
+          <li class="list-group-item"><img src="<%= bookmark.movie.poster_url%>" alt=""></li>
+        <li class="list-group-item mb-5"><%= bookmark.movie.rating%></li>
+          <%= link_to "delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Delete bookmark?"} %>
+      <% end %>
+    </ul>
+  
 </div>
